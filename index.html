@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta content="#ffffff" name="theme-color"/>
+<meta content="light" name="color-scheme"/>
+<meta content="Pantaloons proposed product-detail experience — mobile prototype" name="description"/>
+<title>Pantaloons | 7 ALT Relaxed-Fit Drawstring Trouser — V11 (V6 Framework)</title>
+<style>
+    :root{--ink:#1c1e20;--quiet:#74777a;--muted:#9a9b9b;--line:#e7e9e7;--teal:#00a9ad;--teal-dark:#078a91;--aqua:#eaf8f8;--wash:#f6f7f5;--cream:#f4f2ed;--radius:10px;--header:59px;--safe-bottom:env(safe-area-inset-bottom, 0px)}
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+    body{margin:0;background:#e9ecec;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;color:var(--ink);font-size:15px;line-height:1.45;font-weight:400}
+    .app{position:relative;max-width:440px;min-height:100svh;background:#fff;margin:0 auto;box-shadow:0 12px 70px rgba(0,0,0,.13);overflow:clip}
+    button,input{font:inherit}button{cursor:pointer;-webkit-tap-highlight-color:transparent;color:inherit}
+    img{display:block;max-width:100%}a{color:inherit;text-decoration:none}
+    :focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+    .icon{height:22px;width:22px;stroke:currentColor;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.7;vertical-align:middle}
+    .icon-sm{width:17px;height:17px}.icon-lg{width:26px;height:26px}
+    .topbar{height:var(--header);position:sticky;top:0;z-index:40;background:rgba(255,255,255,.97);border-bottom:1px solid #eee;display:flex;align-items:center;justify-content:space-between;padding:0 16px;backdrop-filter:blur(16px)}
+    .top-left,.top-right{display:flex;gap:15px;align-items:center}.top-left{gap:9px}
+    .icon-button{display:inline-flex;border:0;background:transparent;width:32px;height:36px;align-items:center;justify-content:center;padding:0;position:relative}
+    .brand-logo{font-size:29px;letter-spacing:-1.9px;line-height:1;color:var(--teal);font-weight:350;transform:translateY(-1px)}
+    .bag-count{position:absolute;right:-3px;top:-1px;font-size:10px;background:var(--teal);color:white;width:17px;height:17px;border-radius:50%;display:grid;place-items:center;font-weight:600}
+    .hero{position:relative;background:#eee;overflow:hidden;height:min(64svh,580px);min-height:350px;touch-action:pan-y}
+    .hero-image{width:100%;height:100%;object-fit:cover;object-position:center center;transition:opacity .16s ease;user-select:none;pointer-events:none}
+    .hero-image.fading{opacity:.65}
+    .hero-wishlist{position:absolute;right:17px;top:18px;width:42px;height:42px;border:0;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 14px #00000012}
+    .hero-count{position:absolute;bottom:17px;right:17px;background:rgba(255,255,255,.90);border-radius:40px;padding:7px 12px;font-size:12px;font-weight:600;letter-spacing:.02em}
+    .gallery-progress{position:absolute;bottom:0;left:0;width:100%;height:2px;display:flex;background:rgba(255,255,255,.4)}
+    .gallery-progress span{height:100%;background:var(--teal);width:16.6667%;transition:transform .2s ease}
+    .core{padding:20px 21px 27px}
+    .eyebrow{font-size:12px;letter-spacing:.09em;color:#707174;font-weight:600}
+    .product-title{font-size:23px;line-height:1.22;font-weight:400;letter-spacing:-.55px;margin:6px 0 11px}
+    .price{font-size:22px;font-weight:650;letter-spacing:-.45px}
+    .tax{font-size:12px;color:#838587;margin-top:1px}
+    .model-callout{padding:0 21px 26px;margin-top:-1px;color:#8a8d8e;font-size:12px;display:flex;gap:8px;align-items:center}
+    .separator{height:8px;background:#f6f6f5;border-top:1px solid #f1f1ef;border-bottom:1px solid #f1f1ef}
+    .section{padding:28px 21px 30px;scroll-margin-top:calc(var(--header) + 8px)}
+    .section-tight{padding-top:20px}.section-plain{padding-left:0;padding-right:0}
+    .section-kicker{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--quiet);margin:0 0 7px}
+    h2{font-size:25px;line-height:1.13;letter-spacing:-.6px;font-weight:620;margin:0 0 8px}
+    h3{font-size:17px;font-weight:600;line-height:1.2;letter-spacing:-.25px;margin:0}
+    .intro{color:#818485;font-size:13px;margin:0 0 22px;line-height:1.5}
+    .topline{display:flex;justify-content:space-between;align-items:center;gap:8px}
+    .label-strong{font-weight:620;font-size:14px}.small-link{border:0;background:transparent;color:var(--teal-dark);font-size:12px;font-weight:600;padding:4px 0;white-space:nowrap}
+    .choice-label{margin:0 0 13px;font-size:13px}.choice-label span{color:#868888;font-size:13px}
+    .swatches{display:flex;gap:13px;margin:2px 0 25px}
+    .swatch{width:50px;height:50px;border:1px solid #e4e5e4;padding:3px;background:#fff;border-radius:50%;display:grid;place-items:center;flex:0 0 auto}
+    .swatch.active{border:2px solid var(--ink);padding:3px}
+    .swatch img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+    .sizes{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;margin:11px 0 10px}
+    .size{height:48px;border:1px solid #dddfe0;border-radius:5px;background:white;font-size:14px;font-weight:500;transition:.15s ease}
+    .size.active{color:#fff;background:var(--ink);border-color:var(--ink)}
+    .fit-help{background:#f7f8f7;border-radius:7px;margin-top:20px;padding:15px;display:flex;gap:11px;align-items:center;justify-content:space-between}
+    .fit-help .fit-left{display:flex;align-items:center;gap:11px}.fit-title{font-weight:600;font-size:13px}.fit-note{font-size:11px;color:#929493;margin-top:2px}
+    .outline-pill{border:1px solid #b5e2e3;color:#078e92;background:#f0fbfa;font-weight:600;font-size:11px;border-radius:5px;padding:9px 10px;white-space:nowrap}
+    .tiny-pair{display:flex;align-items:center;gap:6px;color:#858789;font-size:12px;margin:15px 0 0}
+    .smalldivider{border:0;border-top:1px solid var(--line);margin:22px 0}
+    .offer-row,.utility-row,.expand-row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+    .offer-row{background:#f5faf9;border-radius:7px;padding:14px 13px;margin-bottom:20px}
+    .offer-row .offer-top{font-size:13px;font-weight:600}.offer-row .offer-small{color:#898c8d;font-size:11px;margin-top:2px}
+    .pin-field{border:1px solid #d9dcda;border-radius:6px;height:49px;display:flex;align-items:center;margin-top:14px;margin-bottom:12px;overflow:hidden}
+    .pin-field input{border:0;flex:1;min-width:0;outline:0;background:transparent;padding:0 13px;font-size:13px}
+    .pin-field button{border:0;border-left:1px solid #e8e9e8;background:transparent;color:var(--teal-dark);font-weight:650;height:100%;padding:0 17px;font-size:12px}
+    .utility-row{padding:11px 0;font-size:13px;border-bottom:1px solid #f1f1f0}
+    .utility-row .utility-desc{font-size:11px;color:#8b8d8d;margin-top:3px}.utility-left{display:flex;align-items:flex-start;gap:12px}
+    .utility-left>.icon{width:19px;height:19px;margin-top:2px}
+    .low-key{font-size:11px;color:#858888}
+    /* Shop the look */
+    .wide-photo{width:calc(100% + 42px);margin:0 -21px;overflow:hidden;position:relative;background:#eee}
+    .outfit-photo{width:100%;height:375px;object-fit:cover;object-position:center 39%}
+    .outfit-photo-note{position:absolute;bottom:15px;left:17px;background:rgba(255,255,255,.94);font-size:11px;letter-spacing:.06em;border-radius:3px;padding:9px 11px;font-weight:600;text-transform:uppercase}
+    .rail{display:flex;gap:11px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:17px -21px 0;padding:0 21px 6px;-webkit-overflow-scrolling:touch}
+    .rail::-webkit-scrollbar{display:none}
+    .look-card{flex:0 0 140px;scroll-snap-align:start;min-width:0}
+    .look-card-img{position:relative;aspect-ratio:4/4.8;background:#f4f4f3;border-radius:5px;overflow:hidden}
+    .look-card-img img{width:100%;height:100%;object-fit:cover}
+    .look-card .look-name{font-size:12px;margin:9px 0 2px;line-height:1.35;min-height:34px}
+    .look-card .look-price{font-size:12px;font-weight:620}.select-look{position:absolute;right:8px;bottom:8px;border:0;background:#fff;box-shadow:0 1px 7px #00000020;border-radius:50%;width:27px;height:27px;display:grid;place-items:center;font-size:19px;font-weight:500;line-height:1}
+    .select-look.selected{background:var(--ink);color:#fff}
+    .look-summary{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:18px 0 11px;font-size:12px;color:#8a8c8c}
+    .button-outline{border:1px solid #202225;border-radius:5px;background:#fff;width:100%;min-height:48px;font-weight:620;font-size:13px;letter-spacing:.02em;display:flex;align-items:center;justify-content:center;gap:10px}
+    /* style story */
+    .editorial-photo{width:calc(100% + 42px);height:420px;object-fit:cover;object-position:center center;margin:0 -21px 23px}
+    .story-head{display:flex;justify-content:space-between;gap:18px;margin-bottom:15px}
+    .story-head h2{font-size:27px;line-height:1.1}.story-sub{font-size:14px;color:#666a6a;margin:0 0 22px;line-height:1.5;max-width:320px}
+    .stylist-note{border-top:1px solid var(--line);padding-top:18px;margin-top:5px;display:grid;grid-template-columns:85px 1fr;gap:15px}
+    .stylist-note .section-kicker{padding-top:3px;line-height:1.6}
+    .stylist-note p{margin:0;font-size:13px;line-height:1.55;color:#505354}
+    .ways{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:15px}
+    .way-img{border-radius:4px;overflow:hidden;aspect-ratio:4/4.4;background:#f0f0ef}
+    .way-img img{width:100%;height:100%;object-fit:cover;object-position:center top}
+    .way-title{font-size:12px;font-weight:600;margin-top:8px}.way-sub{color:#929495;font-size:10px;line-height:1.4}
+    /* proof */
+    .proof-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin-top:20px}
+    .proof-card{min-width:0}.proof-card img{width:100%;aspect-ratio:1.12;object-fit:cover;border-radius:5px;background:#f4f4f3}
+    .proof-card h3{font-size:13px;margin-top:11px}.proof-card p{font-size:11px;color:#898c8d;margin:4px 0 0;line-height:1.5}
+    details{border-bottom:1px solid var(--line);padding:15px 0}
+    summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-size:14px;font-weight:500}
+    summary::-webkit-details-marker{display:none}summary::after{content:'+';font-size:20px;font-weight:300;color:#888}details[open] summary::after{content:'−'}
+    details .detail-body{font-size:12px;color:#696c6d;line-height:1.65;margin-top:11px}
+    .fit-points{display:flex;flex-wrap:wrap;gap:8px;margin:17px 0}
+    .fit-tag{background:#f3f4f3;border-radius:3px;padding:9px 12px;font-size:12px;color:#4d5050}
+    .preview-looks{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px}
+    .preview-looks img{width:100%;height:200px;object-fit:cover;background:#f5f5f4;border-radius:5px}
+    .preview-looks p{margin:6px 0 0;color:#666;font-size:11px}
+    /* discovery */
+    .mini-rail{display:flex;gap:11px;overflow:auto;scrollbar-width:none;margin:17px -21px 0;padding:0 21px 9px;scroll-snap-type:x proximity}
+    .mini-rail::-webkit-scrollbar{display:none}
+    .mini-card{min-width:160px;width:160px;scroll-snap-align:start}
+    .mini-card img{width:160px;height:187px;object-fit:cover;background:#f5f5f4;border-radius:3px}
+    .mini-card p{font-size:12px;margin:9px 0 4px;line-height:1.35;min-height:28px}.mini-card b{font-size:12px;font-weight:600}
+    .plp-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px 9px;margin-top:17px}
+    .plp-img{aspect-ratio:3/4.1;background:#f5f5f4;position:relative;overflow:hidden;border-radius:3px}
+    .plp-img img{width:100%;height:100%;object-fit:cover}
+    .plp-add{position:absolute;right:8px;bottom:8px;border:0;background:rgba(255,255,255,.94);height:28px;width:28px;border-radius:50%;font-size:19px;line-height:1;display:grid;place-items:center}
+    .plp-name{font-size:12px;margin:8px 0 2px;min-height:30px;line-height:1.35}.plp-price{font-size:13px;font-weight:620}
+    .foot{margin:30px 0 0;padding:22px 23px 120px;border-top:1px solid var(--line);text-align:center}
+    .foot-brand{font-size:24px;letter-spacing:-1px;color:var(--teal)}.foot-disclaimer{font-size:10px;color:#a4a5a5;max-width:270px;margin:6px auto 0;line-height:1.5}
+    /* app purchase controls */
+    .buybar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,440px);min-height:77px;z-index:55;background:rgba(255,255,255,.98);border-top:1px solid #ededed;display:flex;align-items:center;padding:9px 16px calc(10px + var(--safe-bottom));gap:12px;backdrop-filter:blur(20px);box-shadow:0 -3px 14px #00000005}
+    .wishbar{height:49px;width:51px;flex:0 0 51px;border:1px solid var(--line);border-radius:6px;background:#fff;display:grid;place-items:center}
+    .wishbar.active .icon,.hero-wishlist.active .icon{fill:var(--teal);stroke:var(--teal)}
+    .buy-btn{flex:1;border:0;border-radius:6px;background:var(--teal);color:#fff;height:49px;font-weight:650;letter-spacing:.11em;font-size:12px;display:flex;gap:12px;align-items:center;justify-content:center}
+    .buy-btn:active{background:var(--teal-dark)}
+    .toast{position:fixed;left:50%;transform:translateX(-50%) translateY(12px);bottom:calc(92px + var(--safe-bottom));width:max-content;max-width:min(92%,390px);background:#242627;color:white;border-radius:8px;padding:11px 15px;font-size:12px;box-shadow:0 10px 25px #0003;z-index:100;opacity:0;transition:.2s;pointer-events:none;text-align:center}
+    .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+    .sheet-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:79;display:none}
+    .sheet-backdrop.open{display:block}
+    .sheet{position:fixed;left:50%;bottom:0;transform:translate(-50%,105%);width:min(100%,440px);background:#fff;z-index:80;border-radius:17px 17px 0 0;padding:23px 23px calc(28px + var(--safe-bottom));transition:transform .26s ease;box-shadow:0 -8px 40px #0002}
+    .sheet.open{transform:translate(-50%,0)}.sheet-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.sheet-title{font-weight:650;font-size:19px}.sheet p{font-size:13px;color:#747777;line-height:1.55}
+    .sheet-table{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:#e6e8e6;border:1px solid #e6e8e6;margin:18px 0}.sheet-table div{padding:11px 8px;background:#fff;font-size:13px;text-align:center}
+    .fade-in{opacity:1;transform:none}
+    @media(min-width:680px){body{padding:26px 0 40px}.app{border-radius:17px}.buybar{bottom:0;border-radius:12px 12px 0 0}.desktop-heading{display:block}}
+    @media(max-width:359px){.brand-logo{font-size:24px}.top-right{gap:9px}.core,.section{padding-left:16px;padding-right:16px}.wide-photo{width:calc(100% + 32px);margin:0 -16px}.editorial-photo{width:calc(100% + 32px);margin:0 -16px}.rail,.mini-rail{margin-left:-16px;margin-right:-16px;padding-left:16px;padding-right:16px}.look-card{flex-basis:130px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important}}
+
+    /* v2 refined commerce rhythm — no artificial per-screen separator bands */
+    .separator{display:none!important}
+    .section{padding:19px 18px 22px;scroll-margin-top:65px}
+    #decision{padding-top:16px}
+    #shop-look,#story,#proof,#confidence,#discovery{border-top:1px solid #eceeed}
+    .core{padding:15px 18px 17px}
+    .product-title{font-size:21px;line-height:1.2;margin:5px 0 7px}
+    .price{font-size:21px}
+    .section-kicker{margin-bottom:6px}
+    .intro{margin:0 0 13px}
+    .smalldivider{margin:15px 0}
+    .decision-topline{margin-bottom:11px}
+    .decision-topline h2{font-size:20px;margin:0}
+    .decision-fit{font-size:11px;color:#777b7e}
+    .choice-label{margin:0 0 8px}
+    .swatches{margin:0 0 16px;gap:10px}
+    .swatch{height:42px;width:42px}
+    .sizes{margin:8px 0 6px;gap:8px}
+    .size{height:43px}
+    .tiny-pair{margin:9px 0 0}
+    .fit-help{margin-top:11px;padding:10px 12px}
+    .fit-help .fit-note{margin-top:0}
+    .offer-row{padding:10px 12px;margin-bottom:13px}
+    .offer-row .offer-small{margin-top:1px}
+    .pin-field{margin:9px 0 5px;height:43px}
+    .utility-row{padding:8px 0}
+    .utility-row .utility-desc{margin-top:1px}
+    .shop-head{display:flex;justify-content:space-between;gap:10px;align-items:baseline;margin-bottom:10px}
+    .shop-head h2{font-size:23px;margin:0}
+    .shop-head p{margin:0;font-size:12px;color:#818587}
+    .wide-photo{width:calc(100% + 36px);margin:0 -18px}
+    .outfit-photo{height:295px;object-fit:cover;object-position:center 40%}
+    .outfit-photo-note{font-size:10px;padding:7px 8px;left:11px;bottom:11px}
+    .rail{margin:10px -18px 0;padding:0 18px 3px;gap:8px}
+    .look-card{flex:0 0 clamp(96px,27vw,118px)}
+    .look-card-img{aspect-ratio:1/1.05}
+    .look-card .look-name{font-size:11px;margin:6px 0 2px;min-height:41px;line-height:1.28}
+    .select-look{width:26px;height:26px;bottom:6px;right:6px}
+    .look-summary{margin:9px 0 8px}
+    .button-outline{min-height:42px;background:var(--aqua);border:0;color:#097d82;letter-spacing:0}
+    .story-section{padding-top:18px}
+    .story-titleline{display:flex;flex-direction:column;gap:2px;margin-bottom:11px}
+    .story-titleline h2{font-size:23px;line-height:1.1;margin:0;letter-spacing:-.4px}
+    .editorial-card{display:grid;grid-template-columns:41% 59%;height:284px;background:#f3f4f2;overflow:hidden;position:relative;border-radius:6px}
+    .editorial-copy{padding:26px 6px 12px 13px;display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-width:0}
+    .editorial-copy span{font-size:8.5px;letter-spacing:.12em;color:#727476;white-space:nowrap}
+    .editorial-copy strong{font-size:23px;line-height:1.06;letter-spacing:-.7px;font-weight:650}
+    .editorial-copy p{font-size:11px;line-height:1.45;margin:0;color:#6a6f6e}
+    .editorial-card img{width:100%;height:100%;object-fit:cover;object-position:45% 50%;min-width:0}
+    .trend-note{display:grid;grid-template-columns:45% 55%;gap:0;min-height:148px;margin-top:9px;border-radius:6px;overflow:hidden;background:#f6f6f5}
+    .trend-note>img{width:100%;height:148px;object-fit:cover;object-position:center center}
+    .trend-note-copy{padding:13px 10px 10px 14px}
+    .trend-note-copy span{font-size:9px;letter-spacing:.12em;color:#86898a}
+    .trend-note-copy strong{display:block;font-size:16px;letter-spacing:-.3px;margin-top:11px;line-height:1.15}
+    .trend-note-copy p{font-size:11px;color:#76797a;margin:6px 0 0;line-height:1.4}
+    .story-qualities{display:grid;grid-template-columns:repeat(3,1fr);text-align:center;gap:8px;margin:14px 0 14px}
+    .story-qualities div{display:flex;flex-direction:column;gap:2px;font-size:11px}
+    .story-qualities span{color:#939595;font-size:10px}
+    .ways-head{margin:12px 0 0}
+    .ways-head h3{font-size:15px}
+    .ways-head .low-key{font-size:10px}
+    .ways{margin-top:9px;gap:8px}
+    .way-img{aspect-ratio:1/1.04}
+    .way-title{margin-top:5px;font-size:11px}
+    .foot{margin-top:12px}
+    @media(max-width:359px){
+      .section{padding-left:15px;padding-right:15px}
+      .wide-photo{width:calc(100% + 30px);margin-left:-15px;margin-right:-15px}
+      .rail{margin-left:-15px;margin-right:-15px;padding-left:15px;padding-right:15px}
+      .editorial-card{height:264px}
+      .editorial-copy strong{font-size:20px}
+    }
+
+  
+
+/* Version 3: approved four-scroll hierarchy, expanded commerce depth */
+:root{--teal:#00a7ad;--aqua:#e6f7f7}
+body{background:#e9eeed}
+.app{overflow:visible}
+.topbar{height:58px;gap:9px;padding:0 14px}
+.top-left{flex:1;min-width:0;gap:7px}.top-right{gap:9px}
+.brand-logo{display:flex;align-items:center;transform:none;flex:0 1 auto;min-width:0}
+.brand-wordmark{width:clamp(135px,39vw,182px);height:auto;max-width:100%;object-fit:contain}
+.footer-wordmark{height:26px;max-width:190px;margin:auto;object-fit:contain}
+.hero{height:clamp(410px,63svh,620px);min-height:0;background:#f1f1f1}
+.hero-image{object-fit:cover;object-position:center 50%}
+.hero-count{background:rgba(255,255,255,.9)}
+.core{padding:14px 17px 20px}
+#decision,#shop-look,#story,#proof,#confidence,#discovery{border-top:0}
+#decision{padding-top:9px}
+.section{padding:16px 17px 23px}
+/* a hint of separation without pretending each module is a full page */
+#shop-look,#story,#proof,#confidence,#discovery{border-top:1px solid #eee}
+.selection-panel{background:#fafafa;border:1px solid #e5e7e7;border-radius:13px;padding:14px 13px 13px}
+.colour-title{font-size:13px;color:#787b7d;display:flex;gap:8px;align-items:center;margin-bottom:12px}
+.colour-title strong{font-size:14px;color:var(--ink);font-weight:630}
+.swatches{gap:9px;justify-content:space-between;margin:0 0 20px}
+.swatch{width:37px;height:37px;padding:3px;border-radius:50%;border:2px solid transparent}
+.swatch.active{border-color:var(--teal);padding:3px}
+.swatch span{background:var(--swatch);display:block;width:100%;height:100%;border-radius:50%;box-shadow:inset 0 0 0 .5px #0000000a}
+.size-title{margin-bottom:9px}.size-title strong{font-size:16px;font-weight:650}
+.sizes{grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;margin:0 0 13px}
+.size{height:44px;font-size:14px;border:1px solid #d9dcdb;border-radius:6px}
+.fit-bottom{border-top:1px solid #e7e8e7;display:flex;justify-content:space-between;align-items:center;padding-top:10px;gap:5px}
+.fit-bottom .small-link{font-size:12px}
+.model-link{font-size:11px;color:#858789;border:0;background:transparent;display:flex;align-items:center;gap:3px;white-space:nowrap}
+.selection-footnote{margin:7px 0 0;color:#828688;font-size:11px}
+.simple-panel{border:1px solid #e7e9e8;border-radius:12px;margin-top:12px;padding:15px 14px;background:#fff}
+.simple-panel .topline h3,.simple-panel h3{font-size:16px;font-weight:650;margin:0}
+.simple-panel>p,.simple-panel .quiet{font-size:12px;color:#8a8d8f;margin:3px 0 0}
+.offers-panel>p{margin-top:6px}
+.pin-field{margin:11px 0 4px;height:44px}
+.pin-field button{background:var(--teal);color:#fff;border:0;border-radius:6px;margin:4px;height:36px;padding:0 16px}
+.delivery-row{border:0;border-bottom:1px solid #eee;background:transparent;width:100%;padding:11px 2px;display:flex;align-items:center;justify-content:space-between;text-align:left;gap:10px}
+.delivery-row:last-child{border:0;padding-bottom:2px}
+.delivery-row span{display:flex;flex-direction:column;gap:2px;min-width:0}
+.delivery-row b{font-size:13px;font-weight:600}
+.delivery-row small{font-size:11px;color:#888c8e;line-height:1.4}
+.delivery-row .icon{color:#7f8486;flex:none}
+.membership-strip{margin:14px 0 0;border:1px solid #e8eeed;background:#f7fbfa;border-radius:10px;padding:12px 10px;display:flex;gap:9px;align-items:center}
+.membership-mark{background:#e6f4f4;color:var(--teal);width:33px;height:33px;border-radius:7px;font-size:24px;display:grid;place-items:center;flex:none;font-family:Georgia,serif}
+.membership-copy{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.membership-copy b{font-size:12px;font-weight:650;white-space:nowrap}.membership-copy span{font-size:10px;color:#858a8a;line-height:1.35}
+.membership-strip .small-link{font-size:10px;white-space:nowrap}
+.trust-band{padding:15px 0 0}.trust-band>span{font-size:12px;font-weight:650}
+.trust-items{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:10px;gap:6px}
+.trust-items button{border:0;background:#fff;font-size:10px;line-height:1.35;color:#777d7e;padding:6px 2px;display:flex;align-items:center;gap:5px;flex-direction:column;text-align:center}
+.trust-items .icon{color:var(--teal);height:20px;width:20px}
+/* Match final Slide 9: commerce widget, not magazine spread */
+.shop-heading{margin:1px 0 12px}.shop-heading h2{font-size:24px;letter-spacing:-.5px;margin:0}
+.shop-heading p{font-size:12px;color:#878c8c;margin:1px 0 0}
+.look-feature{display:grid;grid-template-columns:61% 39%;height:302px;border-radius:10px;overflow:hidden;background:#f1f2f1}
+.look-feature img{width:100%;height:100%;object-fit:cover;object-position:49% 50%;min-width:0}
+.look-feature-copy{padding:32px 9px 8px 13px;min-width:0;background:#eff0ef}
+.look-feature-copy span{font-size:10.5px;font-weight:500;color:#84888b}
+.look-feature-copy strong{display:block;font-size:clamp(18px,5vw,22px);letter-spacing:-.5px;line-height:1.16;margin-top:21px;font-weight:670}
+.look-feature-copy p{font-size:12px;color:#818585;line-height:1.45;margin-top:15px}
+.rail{gap:9px;margin-top:10px}
+.look-card{flex-basis:116px}
+.look-card-img{aspect-ratio:1/1;background:#f2f3f2}
+.look-card .look-name{min-height:29px;font-size:11px;line-height:1.28;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.look-card .look-price{margin-top:4px;font-size:12px}
+.look-summary{color:#737677;margin:10px 0 7px}
+.button-outline{background:#e3f6f6;color:#078a91;min-height:43px;font-weight:650;border-radius:7px}
+/* Approved screen 4: editorial story is a separate module, no secondary shopping rails */
+#story{padding-top:17px}
+.story-hero{height:350px;background:#f2f2f0;display:grid;grid-template-columns:42% 58%;overflow:hidden;border-radius:12px}
+.story-hero-copy{padding:41px 3px 15px 15px;display:flex;flex-direction:column;justify-content:flex-start;gap:17px;min-width:0}
+.story-hero-copy h2{font-size:clamp(19px,5vw,25px);font-weight:680;line-height:1.08;letter-spacing:-.75px;margin:0;overflow-wrap:normal}
+.story-hero-copy p{font-size:12px;color:#777b7b;line-height:1.5;margin:0}
+.story-hero img{width:100%;height:100%;object-fit:cover;object-position:53% 50%;min-width:0}
+.story-bottom-copy{margin:18px 2px 16px}.story-bottom-copy h3{font-size:19px;letter-spacing:-.3px}.story-bottom-copy p{font-size:12px;color:#8c9090;margin:5px 0 0}
+.benefit-feature{display:grid;grid-template-columns:45% 55%;height:148px;background:#f4f4f3;border-radius:10px;overflow:hidden}
+.benefit-feature img{width:100%;height:100%;object-fit:cover;object-position:center 42%}
+.benefit-feature>div{padding:22px 8px 10px 15px}.benefit-feature h3{font-size:16px;margin:0 0 10px}
+.benefit-feature p{font-size:12px;color:#858888;line-height:1.48;margin:0}
+.story-qualities{margin:15px 0 1px;text-align:left;gap:0}
+.story-qualities div{padding:0 10px;border-right:1px solid #e2e5e4}
+.story-qualities div:first-child{padding-left:0}.story-qualities div:last-child{border:0}
+.story-qualities b{font-size:11px;font-weight:650}.story-qualities span{font-size:10px}
+#proof .proof-card img{aspect-ratio:1.06}
+#confidence .ways{margin-top:13px}
+#confidence .ways .way-img{aspect-ratio:1/1.1}
+#confidence .way-title{font-size:11px}
+#discovery .intro{margin-bottom:9px}
+/* Keep all horizontal product carousels in the phone viewport */
+html,body{overflow-x:clip}
+.app{overflow-x:clip}
+.mini-rail{margin-left:-17px;margin-right:-17px;padding-left:17px;padding-right:17px}
+/* reduced motion and no fake swipe-page spacers */
+.separator{display:none!important}
+@media(max-width:359px){.swatch{width:33px;height:33px}.story-hero{height:324px}.story-hero-copy h2{font-size:21px}.look-feature{height:280px}.look-feature-copy strong{font-size:18px}.membership-strip .small-link{font-size:9px}.membership-copy b{font-size:11px}}
+@media(min-width:680px){.story-hero-copy h2{font-size:27px}.look-feature-copy strong{font-size:22px}}
+
+/* v4 photography and utility refinement */
+.hero-image{object-fit:cover;object-position:center 43%}
+.gallery-progress span{width:16.666667%}
+.gallery-caption{pointer-events:none;display:none;position:absolute;left:0;right:0;bottom:0;padding:70px 21px 34px;color:white;background:linear-gradient(0deg,rgba(17,20,20,.65),transparent);text-shadow:0 1px 8px #0006}
+.gallery-caption.visible{display:flex;flex-direction:column;gap:4px}
+.gallery-caption span{font-size:10px;letter-spacing:.19em;font-weight:600}
+.gallery-caption strong{font-size:26px;letter-spacing:-.6px;line-height:1.1;max-width:250px}
+.model-height{font-size:11px;color:#545a5a;text-align:right;line-height:1.35}
+.model-height small{display:block;color:#9a9f9e;font-size:9px}
+.offer-applied{margin-top:10px;display:flex;justify-content:space-between;align-items:center;gap:9px;background:#f0faf6;border-radius:7px;padding:12px 11px}
+.offer-applied>div{display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-width:0}
+.applied-tag{font-size:10px;font-weight:700;color:#0a7b64;letter-spacing:.045em}
+.offer-applied strong{font-size:14px;line-height:1.3}
+.offer-applied small{font-size:11px;color:#5f7370}
+.saving{font-size:10px;font-weight:700;color:#12785c;white-space:nowrap}
+.free-tag{font-style:normal;background:#e4f7eb;color:#23714c;font-size:10px;border-radius:10px;padding:2px 5px;margin-left:6px}
+.delivery-row{cursor:default;padding:11px 0}.delivery-row b{display:inline-block}
+.membership-mark{background:#fff;width:68px;height:35px;padding:5px 2px;border-radius:4px}
+.membership-mark img{width:64px;height:auto;max-height:25px;object-fit:contain}
+.membership-copy b{font-size:12px}
+.trust-items div{border:0;background:#fff;font-size:10px;line-height:1.35;color:#777d7e;padding:6px 2px;display:flex;align-items:center;gap:5px;flex-direction:column;text-align:center}
+.select-look.selected{background:var(--teal);color:#fff}
+.select-look.selected::after{content:'';position:absolute;inset:5px;border:1px solid white;border-radius:50%;pointer-events:none}
+.shop-heading p{display:none}
+#proof{padding-top:21px}
+#proof>h2{margin-bottom:16px}
+.fit-model-note{color:#666c6b;font-size:12px;margin:0 0 17px}
+.fit-model-note span{color:#999;font-size:10px}
+.ways{gap:8px}.way-img{aspect-ratio:3/4!important;background:#f4f4f3;overflow:hidden;border-radius:4px}
+.way-img img{width:100%;height:100%;object-fit:cover;object-position:center 35%;display:block}
+.way-title{text-align:left;font-weight:550;font-size:11px}
+#discovery{padding-top:22px}#discovery>h2{margin-bottom:15px}
+.plp-grid{gap:20px 12px}.plp-img{aspect-ratio:3/4.25}.plp-img img{object-position:center 38%}
+
+/* PDP v4 — unfilled add controls, compact reviews, expanded product discovery */
+.look-caption-row,.plp-caption-row{display:flex;align-items:flex-start;justify-content:space-between;gap:4px;min-height:38px;margin-top:5px}
+.look-caption-row .look-name{flex:1;min-width:0;min-height:unset;margin:0 0 2px;line-height:1.31}
+.plp-caption-row .plp-name{flex:1;min-width:0;min-height:unset;margin:0 0 2px;line-height:1.32}
+.select-look,.select-look.selected,.plp-add{
+ position:static!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ color:#111!important;border-radius:0!important;outline-offset:-2px;
+ font-size:21px!important;font-weight:400!important;line-height:1!important;
+ width:30px!important;height:31px!important;min-width:30px;flex:0 0 30px;
+ display:flex!important;align-items:flex-start!important;justify-content:center!important;padding:2px 0!important;
+ text-shadow:none!important;transition:none!important;
+}
+.select-look.selected::after{display:none!important;content:none!important}
+.select-look.selected{font-size:20px!important}
+.select-look:active,.plp-add:active{opacity:.55}
+.button-outline:disabled{opacity:.42;cursor:default}
+.review-section{border-top:1px solid var(--line);margin-top:20px;padding-top:20px}
+.review-title-row{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.review-title-row h3{font-size:19px;letter-spacing:-.3px}
+.demo-tag{color:#999;font-size:10px;white-space:nowrap}
+.review-summary{display:flex;align-items:center;gap:9px;padding:12px 0 10px}
+.review-stars{font-size:15px;letter-spacing:1px;color:#1e2423}.review-stars span{color:#a8a9a9}
+.review-summary strong{font-size:17px;font-weight:630}.review-summary small{margin-left:auto;max-width:116px;text-align:right;color:#969a99;font-size:10px;line-height:1.3}
+.fit-signal{border:1px solid #eceeec;background:#fafbfa;padding:11px 12px;border-radius:7px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:7px 12px;font-size:11px}
+.fit-signal>span{color:#757b7a}.fit-signal>strong{font-weight:600;font-size:11px}
+.fit-meter{grid-column:1/-1;height:3px;background:#e5e6e3;border-radius:10px;position:relative}
+.fit-meter i{display:block;position:absolute;left:50%;width:4px;height:11px;top:-4px;border-radius:3px;background:#3e4543}
+.review-quote{padding:13px 0;border-bottom:1px solid #eff0ee}.review-quote:last-child{border-bottom:0}
+.review-meta{display:flex;justify-content:space-between;gap:10px;font-size:10px;color:#929696;align-items:center}
+.review-quote-stars{font-size:12px;color:#252827;letter-spacing:1px}
+.review-quote p{font-size:12px;color:#535857;line-height:1.5;margin:6px 0 0}
+#discovery .plp-grid{gap:20px 11px}
+
+/* Product gallery full-screen photo viewer — keep images uncropped at native aspect ratio. */
+#gallery{cursor:zoom-in}
+.gallery-viewer{position:fixed;inset:0;z-index:200;background:#080808;color:#fff;display:none;flex-direction:column;overscroll-behavior:contain;touch-action:pan-y}
+.gallery-viewer.open{display:flex}
+.gallery-viewer:focus{outline:none}
+.gallery-viewer-top{position:absolute;top:0;left:0;right:0;z-index:3;padding:calc(12px + env(safe-area-inset-top,0px)) 16px 12px;display:flex;justify-content:flex-end;pointer-events:none}
+.gallery-viewer-close{pointer-events:auto;display:grid;place-items:center;width:45px;height:45px;padding:0;border:0;background:rgba(29,29,29,.72);color:#fff;border-radius:50%;backdrop-filter:blur(8px)}
+.gallery-viewer-close svg{width:26px;height:26px}
+.gallery-viewer-stage{width:100%;min-height:0;flex:1;display:flex;align-items:center;justify-content:center;position:relative;padding:calc(12px + env(safe-area-inset-top,0px)) 0 calc(12px + env(safe-area-inset-bottom,0px));overflow:hidden}
+.gallery-viewer-img{display:block;width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none;pointer-events:none}
+.gallery-viewer-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:40px;height:52px;background:rgba(30,30,30,.38);color:white;border:0;display:grid;place-items:center;font-size:38px;font-weight:200;line-height:1;opacity:.94}
+.gallery-viewer-prev{left:0;border-radius:0 7px 7px 0}
+.gallery-viewer-next{right:0;border-radius:7px 0 0 7px}
+.gallery-viewer-footer{position:absolute;z-index:3;bottom:calc(15px + env(safe-area-inset-bottom,0px));left:0;right:0;text-align:center;pointer-events:none}
+.gallery-viewer-counter{display:inline-block;padding:7px 13px;background:rgba(25,25,25,.6);border-radius:20px;font-size:13px;font-weight:500;letter-spacing:.04em;color:#fff}
+@media(min-width:700px){.gallery-viewer-nav{width:54px;height:70px}.gallery-viewer-img{max-width:calc(100% - 110px)}}
+@media(prefers-reduced-motion:reduce){.gallery-viewer-img{transition:none}}
+
+
+/* v6: compact selected-size store availability (illustrative, no live inventory) */
+.store-preview{border:1px solid #e4e9e7;border-radius:9px;background:#f9fbfa;padding:11px 12px;margin:9px 0 13px}
+.store-preview-header{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.store-preview-label{display:flex;align-items:center;gap:7px;font-size:10px;letter-spacing:.09em;font-weight:700;color:#737d7a}
+.store-preview-label .icon{width:16px;height:16px;color:#4a5753}
+.store-demo{font-size:9px;letter-spacing:.07em;color:#788482;border:1px solid #d9e1de;padding:3px 6px;border-radius:3px;white-space:nowrap}
+.store-preview-name{margin-top:9px;font-size:13px;font-weight:650;letter-spacing:-.13px}
+.store-preview-address{color:#858b89;font-size:10px;margin-top:2px}
+.store-preview-bottom{margin-top:11px;padding-top:9px;border-top:1px solid #e6ebea;display:flex;align-items:center;justify-content:space-between;gap:6px}
+.store-preview-bottom > span{font-size:11px;color:#58625d;display:flex;align-items:center;gap:7px}
+.store-preview-bottom > span i{background:#4c9c79;width:6px;height:6px;flex:0 0 6px;border-radius:50%;display:block}
+.store-preview-bottom button{border:0;background:transparent;color:#067e83;font-weight:600;font-size:11px;padding:5px 0;white-space:nowrap}
+.store-preview-bottom button span{font-size:17px;font-weight:400;vertical-align:-1px}
+.store-size-grid{margin-top:10px;border-top:1px solid #edf0ef;padding-top:9px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.store-size-grid[hidden]{display:none!important}
+.store-size-grid > span{font-size:12px;border:1px solid #e1e7e4;border-radius:5px;background:#fff;padding:6px 7px;font-weight:600}
+.store-size-grid small{display:block;margin-top:2px;font-size:9px;color:#888;font-weight:400}
+/* v6: visual benefit icons */
+.story-qualities .quality-icon{display:flex!important;justify-content:center;align-items:center;margin:0 auto 5px;width:27px;height:27px;color:#252b28}
+.story-qualities .quality-icon svg{width:23px;height:23px}
+/* v6: three distinct recommendation intents */
+#discovery{padding-bottom:33px}
+.discover-heading{margin-bottom:22px}
+.discover-heading h2{font-size:24px;letter-spacing:-.6px;margin:0}
+.discover-heading p{font-size:12px;color:#858987;line-height:1.5;margin:6px 0 0}
+.discovery-block{margin:0 0 27px}
+.discovery-block + .discovery-block{border-top:1px solid #e8eae8;padding-top:22px}
+.discover-title{display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
+.section-eyebrow{font-size:9px;letter-spacing:.11em;color:#848c89;font-weight:600}
+.discover-title h3{font-size:21px;line-height:1.1;letter-spacing:-.55px;margin:5px 0 0;font-weight:670}
+.discover-index{font-size:10px;color:#a0a4a1;white-space:nowrap;padding-bottom:3px}
+.discovery-copy{font-size:12px;line-height:1.45;color:#777c79;margin:7px 0 12px}
+.edit-rail{display:flex;gap:9px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory;margin:0 -18px;padding:0 18px 6px}
+.edit-rail::-webkit-scrollbar{display:none}
+.edit-card{flex:0 0 62%;scroll-snap-align:start;min-width:0}
+.edit-photo{width:100%;aspect-ratio:3/5;overflow:hidden;background:#e9e8e4;border-radius:5px}
+.edit-photo img{width:100%;height:100%;display:block;object-fit:cover;object-position:center top}
+.edit-brand,.sim-card-brand{font-size:10px;letter-spacing:.045em;color:#858a87;margin-top:9px}
+.edit-name{font-size:13px;font-weight:500;line-height:1.35;margin-top:3px;min-height:18px}
+.edit-price{font-size:13px;font-weight:650;display:block;margin-top:3px}
+.discovery-similar .plp-grid{margin-top:13px;gap:21px 9px}
+.new-sim-card{min-width:0}
+.discovery-similar .plp-img{aspect-ratio:3/4.9}
+.discovery-similar .plp-img img{object-position:center top}
+.discovery-similar .plp-name{margin:3px 0 2px;min-height:34px;font-weight:500}
+.discovery-similar .plp-price{font-size:13px}
+.assortment-note{font-size:10px;line-height:1.5;color:#9a9f9b;margin:3px 0 0}
+@media(max-width:359px){.edit-rail{margin-left:-15px;margin-right:-15px;padding-left:15px;padding-right:15px}.edit-card{flex-basis:67%}.store-demo{font-size:8px}}
+</style>
+</head>
+<body>
+<svg aria-hidden="true" height="0" style="position:absolute;overflow:hidden" width="0">
+<symbol id="i-back" viewbox="0 0 24 24"><path d="M15 18l-6-6 6-6"></path></symbol>
+<symbol id="i-search" viewbox="0 0 24 24"><circle cx="10.8" cy="10.8" r="7.1"></circle><path d="m16 16 5 5"></path></symbol>
+<symbol id="i-bag" viewbox="0 0 24 24"><path d="M5 8h14l-1 13H6L5 8Z"></path><path d="M9 9V6a3 3 0 0 1 6 0v3"></path></symbol>
+<symbol id="i-heart" viewbox="0 0 24 24"><path d="M20.5 4.9a5.5 5.5 0 0 0-7.8 0L12 5.6l-.7-.7a5.5 5.5 0 0 0-7.8 7.8L12 21l8.5-8.3a5.5 5.5 0 0 0 0-7.8Z"></path></symbol>
+<symbol id="i-arrow" viewbox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"></path></symbol>
+<symbol id="i-chev" viewbox="0 0 24 24"><path d="m9 6 6 6-6 6"></path></symbol>
+<symbol id="i-ruler" viewbox="0 0 24 24"><path d="M3 8 16 21l5-5L8 3 3 8Z"></path><path d="m10 6-2 2m5 1-2 2m5 1-2 2"></path></symbol>
+<symbol id="i-pin" viewbox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="2.5"></circle></symbol>
+<symbol id="i-store" viewbox="0 0 24 24"><path d="M3 9 5 3h14l2 6v2H3V9Z"></path><path d="M5 11v10h14V11M9 21v-7h6v7"></path></symbol>
+<symbol id="i-truck" viewbox="0 0 24 24"><path d="M1.5 5h13v13h-13V5Zm13 5h4.4l3.1 4v4h-7.5v-8Z"></path><circle cx="6" cy="18" r="2"></circle><circle cx="18" cy="18" r="2"></circle></symbol>
+<symbol id="i-return" viewbox="0 0 24 24"><path d="M5 10a8 8 0 1 1 2.4 8.3M5 4v6h6"></path></symbol>
+<symbol id="i-plus" viewbox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></symbol>
+<symbol id="i-close" viewbox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"></path></symbol>
+</svg>
+<div class="app" id="top">
+<header aria-label="Pantaloons app header" class="topbar">
+<div class="top-left">
+<button aria-label="Back" class="icon-button" id="back-btn"><svg class="icon icon-lg"><use href="#i-back"></use></svg></button>
+<a aria-label="Pantaloons" class="brand-logo" href="#top"><img alt="Pantaloons" class="brand-wordmark" src="assets/pantaloons-logo.png"/></a>
+</div>
+<div class="top-right">
+<button aria-label="Search" class="icon-button" id="search-btn"><svg class="icon"><use href="#i-search"></use></svg></button>
+<button aria-label="Shopping bag" class="icon-button" id="cart-btn"><svg class="icon"><use href="#i-bag"></use></svg><span class="bag-count">0</span></button>
+</div>
+</header>
+<!-- Stage 1: Desire. First fold intentionally image-dominant. -->
+<section aria-label="Product introduction" id="hero-stage">
+<div aria-label="Swipe to view product images" class="hero" id="gallery">
+<img alt="Model wearing 7 ALT light-grey relaxed drawstring trousers with charcoal knit and black tote" class="hero-image" fetchpriority="high" id="hero-photo" src="assets/hero-trouser.jpg"/>
+<button aria-label="Save to wishlist" class="hero-wishlist" id="top-wishlist"><svg class="icon"><use href="#i-heart"></use></svg></button>
+<div class="hero-count" id="gallery-count">1 / 6</div>
+<div class="gallery-progress"><span id="gallery-progress"></span></div><div aria-hidden="true" class="gallery-caption" id="gallery-caption"><span>EVERYDAY, YOUR WAY</span><strong>Keep it effortless.</strong></div>
+</div>
+<div class="core">
+<div class="eyebrow">7 ALT</div>
+<h1 class="product-title">Light Grey Relaxed Fit Essential Drawstring Pant</h1>
+<div class="price">₹1,499</div>
+<div class="tax">MRP inclusive of all taxes</div>
+</div>
+</section>
+<!-- Stage 2: Decide. Keep Indian commerce utility without visual clutter. -->
+<section class="section" id="decision">
+<div class="selection-panel">
+<div class="colour-title">Colour <strong id="colour-name">Light Grey</strong></div>
+<div aria-label="Choose trouser colour" class="swatches" role="group">
+<button aria-label="Light Grey" aria-pressed="true" class="swatch active" data-colour="Light Grey"><span style="--swatch:#d6d8d5"></span></button>
+<button aria-label="Grey" aria-pressed="false" class="swatch" data-colour="Grey"><span style="--swatch:#898e8b"></span></button>
+<button aria-label="Black" aria-pressed="false" class="swatch" data-colour="Black"><span style="--swatch:#232b2b"></span></button>
+<button aria-label="Navy" aria-pressed="false" class="swatch" data-colour="Navy"><span style="--swatch:#3e4d62"></span></button>
+<button aria-label="Taupe" aria-pressed="false" class="swatch" data-colour="Taupe"><span style="--swatch:#ac9b88"></span></button>
+<button aria-label="Brown" aria-pressed="false" class="swatch" data-colour="Brown"><span style="--swatch:#786158"></span></button>
+<button aria-label="Ecru" aria-pressed="false" class="swatch" data-colour="Ecru"><span style="--swatch:#eee6d7"></span></button>
+</div>
+<div class="topline size-title"><strong id="size-picker">Select size</strong><button class="small-link" data-sheet="size">Size Guide <svg class="icon icon-sm"><use href="#i-chev"></use></svg></button></div>
+<div aria-label="Select waist size" class="sizes" role="group">
+<button aria-pressed="false" class="size" data-size="30">30</button>
+<button aria-pressed="false" class="size" data-size="32">32</button>
+<button aria-pressed="false" class="size" data-size="34">34</button>
+<button aria-pressed="false" class="size" data-size="36">36</button>
+<button aria-pressed="false" class="size" data-size="38">38</button>
+<button aria-pressed="false" class="size" data-size="40">40</button>
+</div>
+<div class="fit-bottom"><button class="small-link" data-sheet="fit">Find My Fit</button><div class="model-height">Model 187 cm · Wears size 32 <small>Illustrative</small></div></div>
+<p class="selection-footnote">Relaxed fit · Mid rise · Ankle length</p>
+</div>
+<div class="simple-panel offers-panel">
+<div class="topline"><h3>Offers for you</h3><button class="small-link" data-sheet="offers">View all <svg class="icon icon-sm"><use href="#i-chev"></use></svg></button></div>
+<div class="offer-applied"><div><span class="applied-tag">✓ OFFER APPLIED</span><strong>STYLE10</strong><small>Extra ₹150 off at checkout on this style</small></div><span class="saving">SAVE ₹150</span></div>
+</div>
+<div class="simple-panel delivery-panel">
+<h3>Delivery &amp; Pickup</h3>
+<p class="quiet">Check delivery options for your PIN code</p>
+<div class="pin-field"><input aria-label="Delivery PIN code" id="pin-input" inputmode="numeric" maxlength="6" pattern="[0-9]{6}" type="text" value="400098"/><button id="pin-check">CHECK</button></div>
+<div class="delivery-row"><span><b>Standard delivery <em class="free-tag">FREE</em></b><small>Wed, 14 Oct – Fri, 16 Oct</small></span></div>
+<div class="delivery-row"><span><b>Express delivery</b><small>Tue, 13 Oct · ₹49</small></span></div>
+<div class="delivery-row"><span><b>Pick up in store</b><small>Phoenix Marketcity, Kurla · See sample stock below</small></span></div>
+<div aria-label="Store availability preview" class="store-preview" id="store-preview">
+<div class="store-preview-header">
+<div class="store-preview-label"><svg class="icon"><use href="#i-store"></use></svg> NEARBY PANTALOONS</div>
+<span class="store-demo">CONCEPT STOCK</span>
+</div>
+<div class="store-preview-name">Pantaloons · Phoenix Marketcity, Kurla</div>
+<div class="store-preview-address">Ground Floor, LBS Marg · Mumbai 400070</div>
+<div class="store-preview-bottom">
+<span id="store-preview-stock"><i></i> Size 32 · Limited stock (demo)</span>
+<button aria-controls="store-size-grid" aria-expanded="false" id="store-sizes-toggle" type="button">Check sizes <span>›</span></button>
+</div>
+<div class="store-size-grid" hidden="" id="store-size-grid">
+<span>30 <small>Demo: in stock</small></span>
+<span>32 <small>Demo: low stock</small></span>
+<span>34 <small>Demo: in stock</small></span>
+<span>36 <small>Demo: limited</small></span>
+<span>38 <small>Demo: unavailable</small></span>
+<span>40 <small>Demo: unavailable</small></span>
+</div>
+</div>
+<div class="delivery-row"><span><b>Returns &amp; exchange</b><small>Easy returns · See terms below</small></span></div>
+</div>
+<div class="membership-strip">
+<div class="membership-mark"><img alt="Pantaloons" src="assets/pantaloons-logo.png"/></div><div class="membership-copy"><b>Pantaloons Membership</b><span>Explore member rewards and benefits</span></div><button class="small-link" data-sheet="membership">Know more <svg class="icon icon-sm"><use href="#i-chev"></use></svg></button>
+</div>
+<div class="trust-band"><span>Why shop Pantaloons</span><div class="trust-items"><div><svg class="icon icon-sm"><use href="#i-store"></use></svg> Store network</div><div><svg class="icon icon-sm"><use href="#i-bag"></use></svg> Brand assurance</div><div><svg class="icon icon-sm"><use href="#i-return"></use></svg> Return support</div></div></div>
+</section>
+<!-- Stage 3: Commercial shoppable outfit. -->
+<section class="section" id="shop-look">
+<div class="shop-heading"><h2>Shop the Look</h2></div>
+<div class="look-feature"><img alt="Model wearing the light grey trousers, olive textured polo, black tote and sandals" loading="lazy" src="assets/look-standing.jpg"/><div class="look-feature-copy"><span>Everyday Essentials</span><strong>Relaxed style,<br/>sorted.</strong><p>Easy layers.<br/>All-day comfort.</p></div></div>
+<div aria-label="Products in this look" class="rail" id="look-rail">
+<article class="look-card"><div class="look-card-img"><img alt="Light grey trousers" loading="eager" src="assets/grey-trouser.jpg"/></div><div class="look-caption-row"><div class="look-name">Relaxed Drawstring Pant</div><button aria-label="Add Trousers to look" aria-pressed="false" class="select-look" data-price="1499" data-product="Trousers">+</button></div><div class="look-price">₹1,499</div></article>
+<article class="look-card"><div class="look-card-img"><img alt="Olive textured polo on ghost mannequin" loading="eager" src="assets/grey-sweater.jpg"/></div><div class="look-caption-row"><div class="look-name">Olive Textured Polo</div><button aria-label="Add Olive polo to look" aria-pressed="false" class="select-look" data-price="1499" data-product="Olive polo">+</button></div><div class="look-price">₹1,499</div></article>
+<article class="look-card"><div class="look-card-img"><img alt="Black canvas tote bag" loading="eager" src="assets/black-tote.jpg"/></div><div class="look-caption-row"><div class="look-name">Canvas Tote Bag</div><button aria-label="Add Tote bag to look" aria-pressed="false" class="select-look" data-price="1299" data-product="Tote bag">+</button></div><div class="look-price">₹1,299</div></article>
+<article class="look-card"><div class="look-card-img"><img alt="Minimal black slide sandals" loading="eager" src="assets/black-sandal.jpg"/></div><div class="look-caption-row"><div class="look-name">Minimal Slide Sandals</div><button aria-label="Add Sandals to look" aria-pressed="false" class="select-look" data-price="999" data-product="Sandals">+</button></div><div class="look-price">₹999</div></article>
+</div>
+<div class="look-summary"><span id="look-count">0 pieces selected</span><b id="look-total">₹0</b></div>
+<button class="button-outline" disabled="" id="add-look"><svg class="icon icon-sm"><use href="#i-bag"></use></svg></button>
+</section>
+<!-- Stage 4: editorial fashion story, visually-led, deliberately concise. -->
+<section class="section story-section" id="story">
+<div class="story-hero"><div class="story-hero-copy"><h2>Everyday<br/>looks better<br/>relaxed.</h2><p>Easy silhouettes.<br/>Modern neutrals.</p></div><img alt="Seated model wearing light-grey trousers and an olive textured polo" loading="lazy" src="assets/look-seated.jpg"/></div>
+<div class="story-bottom-copy"><h3>Made for the everyday.</h3><p>The relaxed silhouette you can dress up or down.</p></div>
+<div class="benefit-feature"><img alt="Light-grey drawstring trouser waist and pocket detail" loading="lazy" src="assets/proof-drape.jpg"/><div><h3>Easy by design</h3><p>Breathable cotton.<br/>Relaxed drape.<br/>Adjustable comfort.</p></div></div>
+<div aria-label="Product benefits" class="story-qualities"><div><span class="quality-icon"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M12 21c3-3 5-6 5-10a5 5 0 0 0-10 0c0 4 2 7 5 10Z"></path><path d="M12 17c0-4 1-7 4-11"></path><path d="M12 12c-2-1-4-1-6-1"></path></svg></span><b>Cotton feel</b><span>Soft against skin</span></div><div><span class="quality-icon"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M4 6h16M4 18h16M7 10l-3 2 3 2M17 10l3 2-3 2M10 5l2-2 2 2M10 19l2 2 2-2"></path></svg></span><b>Relaxed drape</b><span>Room to move</span></div><div><span class="quality-icon"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="m12 3 2.5 5.5L20 11l-5.5 2.5L12 19l-2.5-5.5L4 11l5.5-2.5L12 3Z"></path><path d="M19 19v4M17 21h4"></path></svg></span><b>Easy styling</b><span>For every plan</span></div></div>
+</section>
+<!-- Stage 5: Product proof in imagery, not long spec grids. -->
+<section class="section" id="proof">
+<h2>Why you'll like it</h2>
+<div class="proof-grid">
+<article class="proof-card"><img alt="Close-up of the grey cotton texture" loading="lazy" src="assets/proof-texture.jpg"/><h3>Soft cotton feel</h3><p>Comfortable fabric for everyday dressing.</p></article>
+<article class="proof-card"><img alt="Adjustable drawstring waist detail" loading="lazy" src="assets/proof-waist.jpg"/><h3>Adjustable waist</h3><p>An easy fit with a drawstring closure.</p></article>
+<article class="proof-card"><img alt="Relaxed pant waist and pocket detail" loading="lazy" src="assets/proof-drape.jpg"/><h3>Relaxed drape</h3><p>Contemporary room through the leg.</p></article>
+<article class="proof-card"><img alt="Relaxed trousers showing length and movement" loading="lazy" src="assets/proof-motion.jpg"/><h3>Easy movement</h3><p>Designed for relaxed everyday wear.</p></article>
+</div>
+<hr class="smalldivider"/>
+<details><summary>Product details &amp; fit</summary><div class="detail-body">7 ALT casual trousers. Light grey. Relaxed fit, mid-rise, ankle length and a drawstring waist.</div></details>
+<details><summary>Material &amp; care</summary><div class="detail-body">Cotton. Machine wash following the garment care label. Wash dark colours separately and follow the garment's care instructions.</div></details>
+<details><summary>Delivery, exchange &amp; returns</summary><div class="detail-body">Check eligibility using your PIN code and review the latest applicable return policy before purchase.</div></details>
+</section>
+<!-- Stage 6: Real-world fit confidence. No fabricated reviews or UGC. -->
+<section class="section" id="confidence">
+<h2>Know the fit</h2><p class="fit-model-note">Model height 187 cm · Wearing size 32 <span>(illustrative for concept)</span></p>
+<div class="fit-points"><div class="fit-tag">Relaxed silhouette</div><div class="fit-tag">Drawstring waist</div><div class="fit-tag">Mid rise</div><div class="fit-tag">Ankle length</div></div>
+<div class="topline"><h3>Ways to wear it</h3><span class="low-key">7 ALT styling</span></div>
+<div class="ways"><div><div class="way-img"><img alt="Weekend styling" loading="lazy" src="assets/way-weekend.jpg"/></div><div class="way-title">Weekend</div></div><div><div class="way-img"><img alt="Smart casual styling" loading="lazy" src="assets/way-casual.jpg"/></div><div class="way-title">Smart casual</div></div><div><div class="way-img"><img alt="Travel styling" loading="lazy" src="assets/way-travel.jpg"/></div><div class="way-title">Travel</div></div></div>
+<hr class="smalldivider"/>
+<section aria-label="Customer reviews" class="review-section">
+<div class="review-title-row"><h3>Customer reviews</h3><span class="demo-tag">Sample preview</span></div>
+<div class="review-summary"><div aria-label="Illustrative rating 4.5 out of 5" class="review-stars">★★★★<span>★</span></div><strong>4.5/5</strong><small>Illustrative rating · Not live reviews</small></div>
+<div class="fit-signal"><span>Fit feedback</span><strong>Generally true to size</strong><div aria-hidden="true" class="fit-meter"><i></i></div></div>
+<article class="review-quote"><div class="review-meta"><span class="review-quote-stars">★★★★★</span><span>Sample review · Size 32</span></div><p>Comfortable relaxed fit and an easy everyday silhouette.</p></article>
+<article class="review-quote"><div class="review-meta"><span class="review-quote-stars">★★★★☆</span><span>Sample review · Size 34</span></div><p>Nice drape with enough room through the leg.</p></article>
+</section></section>
+<!-- Stage 7: Continuous discovery, never a dead-end. -->
+<section class="section" id="discovery">
+<div class="discover-heading"><h2>More to discover</h2><p>Styled from the same wardrobe, with a different reason to explore.</p></div>
+<div class="discovery-block discovery-trend">
+<div class="discover-title"><div><span class="section-eyebrow">THE RELAXED DRESSING EDIT</span><h3>More from this trend</h3></div><span class="discover-index">SWIPE →</span></div>
+<div class="discovery-copy">Soft tailoring. Relaxed proportions. Modern neutrals.</div>
+<div aria-label="Explore more from the relaxed dressing trend" class="edit-rail">
+<article class="edit-card"><div class="edit-photo"><img alt="Model wearing stone drawstring trousers with a white linen shirt and black sandals" loading="lazy" src="assets/lookbook-08.jpg"/></div><div class="edit-brand">7 ALT</div><div class="edit-name">Stone linen-blend trousers</div><b class="edit-price">₹1,799</b></article><article class="edit-card"><div class="edit-photo"><img alt="Model in sand pleated trousers with a navy knit polo" loading="lazy" src="assets/lookbook-03.jpg"/></div><div class="edit-brand">7 ALT</div><div class="edit-name">Sand relaxed pleated pant</div><b class="edit-price">₹1,899</b></article><article class="edit-card"><div class="edit-photo"><img alt="Model in cream utility cargos with a burnt sienna overshirt" loading="lazy" src="assets/lookbook-06.jpg"/></div><div class="edit-brand">7 ALT</div><div class="edit-name">Ecru utility cargos</div><b class="edit-price">₹2,099</b></article></div></div>
+<div class="discovery-block discovery-brand">
+<div class="discover-title"><div><span class="section-eyebrow">THE BRAND</span><h3>More from 7 ALT</h3></div><span class="discover-index">SWIPE →</span></div>
+<div class="discovery-copy">A contemporary wardrobe with a relaxed point of view.</div>
+<div aria-label="Explore the 7 ALT collection" class="edit-rail">
+<article class="edit-card"><div class="edit-photo"><img alt="Model styling black trousers with a grey tailored blazer" loading="lazy" src="assets/lookbook-05.jpg"/></div><div class="edit-brand">7 ALT</div><div class="edit-name">Relaxed blazer co-ord</div><b class="edit-price">₹2,299</b></article><article class="edit-card"><div class="edit-photo"><img alt="Model in wide leg indigo jeans and charcoal overshirt" loading="lazy" src="assets/lookbook-10.jpg"/></div><div class="edit-brand">7 ALT</div><div class="edit-name">Wide-leg denim</div><b class="edit-price">₹1,899</b></article><article class="edit-card"><div class="edit-photo"><img alt="Model in terracotta relaxed pants, dark cardigan and black tote" loading="lazy" src="assets/lookbook-12.jpg"/></div><div class="edit-brand">7 ALT</div><div class="edit-name">Terracotta relaxed chinos</div><b class="edit-price">₹1,799</b></article></div></div>
+<div class="discovery-block discovery-similar">
+<div class="discover-title"><div><span class="section-eyebrow">FIND YOUR ALTERNATIVE</span><h3>Explore similar</h3></div><span class="discover-index">10 STYLES</span></div>
+<div class="discovery-copy">Different cuts, textures and colours — same relaxed attitude.</div>
+<div class="plp-grid">
+<article class="new-sim-card"><div class="plp-img"><img alt="Model in charcoal pleated trousers, white open-collar shirt and sneakers" loading="lazy" src="assets/lookbook-01.jpg"/><button aria-label="Preview Charcoal pleated trouser" class="plp-add" type="button">+</button></div><div class="sim-card-brand">7 ALT</div><div class="plp-name">Charcoal pleated trouser</div><div class="plp-price">₹1,899</div></article><article class="new-sim-card"><div class="plp-img"><img alt="Model wearing olive green cargo trousers with an ecru overshirt" loading="lazy" src="assets/lookbook-02.jpg"/><button aria-label="Preview Olive cargo wide-leg pant" class="plp-add" type="button">+</button></div><div class="sim-card-brand">7 ALT</div><div class="plp-name">Olive cargo wide-leg pant</div><div class="plp-price">₹1,999</div></article><article class="new-sim-card"><div class="plp-img"><img alt="Model wearing navy relaxed wide-leg trousers with a white T-shirt" loading="lazy" src="assets/lookbook-04.jpg"/><button aria-label="Preview Navy wide-leg trousers" class="plp-add" type="button">+</button></div><div class="sim-card-brand">7 ALT</div><div class="plp-name">Navy wide-leg trousers</div><div class="plp-price">₹1,799</div></article><article class="new-sim-card"><div class="plp-img"><img alt="Model wearing dark chocolate tailored trousers with beige knitwear" loading="lazy" src="assets/lookbook-07.jpg"/><button aria-label="Preview Chocolate straight-leg trouser" class="plp-add" type="button">+</button></div><div class="sim-card-brand">7 ALT</div><div class="plp-name">Chocolate straight-leg trouser</div><div class="plp-price">₹1,799</div></article><article class="new-sim-card"><div class="plp-img"><img alt="Model in muted sage utility trousers with a black T-shirt" loading="lazy" src="assets/lookbook-09.jpg"/><button aria-label="Preview Sage utility relaxed cargo" class="plp-add" type="button">+</button></div><div class="sim-card-brand">7 ALT</div><div class="plp-name">Sage utility relaxed cargo</div><div class="plp-price">₹1,699</div></article><article class="new-sim-card"><div class="plp-img"><img alt="Model in grey pinstripe trousers with a black overshirt" loading="lazy" src="assets/lookbook-11.jpg"/><button aria-label="Preview Grey pinstripe wide-leg trouser" class="plp-add" type="button">+</button></div><div class="sim-card-brand">7 ALT</div><div class="plp-name">Grey pinstripe wide-leg trouser</div><div class="plp-price">₹1,999</div></article><article class="new-sim-card"><div class="plp-img"><img alt="Taupe relaxed leg trouser styled with an ecru shirt" loading="lazy" src="assets/similar-taupe.jpg"/><button aria-label="Preview Taupe loose-fit trouser" class="plp-add" type="button">+</button></div><div class="sim-card-brand">7 ALT</div><div class="plp-name">Taupe loose-fit trouser</div><div class="plp-price">₹1,499</div></article><article class="new-sim-card"><div class="plp-img"><img alt="Ecru relaxed cargos paired with patterned shirt" loading="lazy" src="assets/similar-ivory.jpg"/><button aria-label="Preview Ecru relaxed cargo" class="plp-add" type="button">+</button></div><div class="sim-card-brand">7 ALT</div><div class="plp-name">Ecru relaxed cargo</div><div class="plp-price">₹1,699</div></article><article class="new-sim-card"><div class="plp-img"><img alt="Sand pleated trousers and navy knit polo" loading="lazy" src="assets/sim-navy-concept.jpg"/><button aria-label="Preview Sand drawstring pleated pant" class="plp-add" type="button">+</button></div><div class="sim-card-brand">Pantaloons</div><div class="plp-name">Sand drawstring pleated pant</div><div class="plp-price">₹1,699</div></article><article class="new-sim-card"><div class="plp-img"><img alt="Terracotta casual wide-leg chinos" loading="lazy" src="assets/sim-khaki-concept.jpg"/><button aria-label="Preview Terracotta relaxed chinos" class="plp-add" type="button">+</button></div><div class="sim-card-brand">Pantaloons</div><div class="plp-name">Terracotta relaxed chinos</div><div class="plp-price">₹1,599</div></article></div></div>
+<p class="assortment-note">Illustrative assortment and prices for the design concept. Product imagery is styled for this prototype and is not live inventory.</p>
+</section>
+<footer class="foot"><div class="foot-brand"><img alt="Pantaloons" class="footer-wordmark" src="assets/pantaloons-logo.png"/></div><p class="foot-disclaimer">Concept UI prototype for internal design review. Product imagery, model height, complementary product listings, offer, delivery, membership benefits, store inventory and returns and customer review examples are illustrative—not live. No actual purchases.</p></footer>
+</div>
+<!-- Fixed, real mobile navigation/purchase chrome -->
+<div aria-label="Purchase actions" class="buybar">
+<button aria-label="Save product" class="wishbar" id="bottom-wishlist"><svg class="icon icon-lg"><use href="#i-heart"></use></svg></button>
+<button class="buy-btn" id="main-buy"><span id="main-buy-label">SELECT SIZE</span><svg class="icon icon-sm"><use href="#i-arrow"></use></svg></button>
+</div>
+<div aria-live="polite" class="toast" id="toast" role="status"></div>
+<div class="sheet-backdrop" id="sheet-backdrop"></div>
+<div aria-hidden="true" aria-label="Product information" aria-modal="true" class="sheet" id="sheet" role="dialog"><div class="sheet-head"><div class="sheet-title" id="sheet-title">Details</div><button aria-label="Close" class="icon-button" id="close-sheet"><svg class="icon"><use href="#i-close"></use></svg></button></div><div id="sheet-content"></div></div>
+<!-- Full-screen image gallery; intentionally separate from the scrollable PDP. -->
+<div aria-hidden="true" aria-label="Full-size product images" aria-modal="true" class="gallery-viewer" id="gallery-viewer" role="dialog" tabindex="-1">
+<div class="gallery-viewer-stage" id="viewer-stage">
+<img alt="" class="gallery-viewer-img" draggable="false" id="viewer-photo"/>
+<button aria-label="Previous product image" class="gallery-viewer-nav gallery-viewer-prev" id="viewer-prev" type="button">‹</button>
+<button aria-label="Next product image" class="gallery-viewer-nav gallery-viewer-next" id="viewer-next" type="button">›</button>
+</div>
+<div class="gallery-viewer-top">
+<button aria-label="Close full-screen image" class="gallery-viewer-close" id="viewer-close" type="button"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M5 5 19 19M19 5 5 19"></path></svg></button>
+</div>
+<div class="gallery-viewer-footer"><span aria-live="polite" class="gallery-viewer-counter" id="viewer-counter">1 / 6</span></div>
+</div>
+<script>
+(function(){
+  const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
+  const root=document.documentElement;
+  let chosenSize=null, chosenColour='Light Grey', liked=false, galleryIndex=0, toastTimeout;
+  const gallery=[
+    {src:'assets/hero-trouser.jpg', alt:'Editorial full-length view of light-grey drawstring trousers with an olive textured polo and black canvas tote'},
+    {src:'assets/gallery-front.jpg', alt:'Editorial full-length front view showing trouser shape and length'},
+    {src:'assets/gallery-waist.jpg', alt:'Close-up of the trousers’ fabric and drawstring waistband'},
+    {src:'assets/gallery-seated.jpg', alt:'Seated styling in the olive polo and same drawstring trousers'},
+    {src:'assets/gallery-city.jpg', alt:'The trousers styled with black sandals and tote in a sunlit architectural setting'},
+    {src:'assets/gallery-last.jpg', alt:'Contemporary seated fashion styling of the light-grey trouser'}
+  ];
+  function toast(msg){const el=$('#toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastTimeout);toastTimeout=setTimeout(()=>el.classList.remove('show'),2700)}
+  function updateGallery(i){galleryIndex=(i+gallery.length)%gallery.length; const im=$('#hero-photo');im.classList.add('fading');setTimeout(()=>{im.src=gallery[galleryIndex].src;im.alt=gallery[galleryIndex].alt;im.classList.remove('fading')},110);$('#gallery-count').textContent=(galleryIndex+1)+' / '+gallery.length;$('#gallery-progress').style.transform=`translateX(${galleryIndex*100}%)`;$('#gallery-caption').classList.toggle('visible',galleryIndex===5);$('#gallery-caption').setAttribute('aria-hidden',String(galleryIndex!==5))}
+  // Swiping the PDP hero changes its image; tapping it opens a full-size viewer.
+  let touch=null, lastGallerySwipe=0, viewerIndex=0, previousFocus=null, viewerTouch=null;
+  const viewer=$('#gallery-viewer');
+  function displayViewerImage(i){
+    viewerIndex=(i+gallery.length)%gallery.length;
+    const im=$('#viewer-photo');
+    im.src=gallery[viewerIndex].src; // original gallery asset, never a compressed thumbnail
+    im.alt=gallery[viewerIndex].alt;
+    $('#viewer-counter').textContent=(viewerIndex+1)+' / '+gallery.length;
+  }
+  function openViewer(){
+    previousFocus=document.activeElement;
+    displayViewerImage(galleryIndex);
+    viewer.classList.add('open');viewer.setAttribute('aria-hidden','false');
+    document.documentElement.style.overflow='hidden';document.body.style.overflow='hidden';
+    viewer.focus({preventScroll:true});
+  }
+  function closeViewer(){
+    viewer.classList.remove('open');viewer.setAttribute('aria-hidden','true');
+    document.documentElement.style.overflow='';document.body.style.overflow='';
+    if(previousFocus&&previousFocus.focus)previousFocus.focus({preventScroll:true});
+  }
+  $('#gallery').addEventListener('touchstart',e=>{if(e.touches.length===1)touch={x:e.touches[0].screenX,y:e.touches[0].screenY}}, {passive:true});
+  $('#gallery').addEventListener('touchend',e=>{
+    if(!touch)return;
+    const dx=e.changedTouches[0].screenX-touch.x,dy=e.changedTouches[0].screenY-touch.y;
+    if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)*1.15){lastGallerySwipe=Date.now();updateGallery(galleryIndex+(dx<0?1:-1))}
+    touch=null;
+  },{passive:true});
+  $('#gallery').addEventListener('click',e=>{
+    if(e.target.closest('button')||Date.now()-lastGallerySwipe<450)return;
+    openViewer();
+  });
+  $('#viewer-close').addEventListener('click',closeViewer);
+  $('#viewer-prev').addEventListener('click',()=>displayViewerImage(viewerIndex-1));
+  $('#viewer-next').addEventListener('click',()=>displayViewerImage(viewerIndex+1));
+  $('#viewer-stage').addEventListener('touchstart',e=>{
+    if(e.touches.length===1)viewerTouch={x:e.touches[0].clientX,y:e.touches[0].clientY};
+  },{passive:true});
+  $('#viewer-stage').addEventListener('touchend',e=>{
+    if(!viewerTouch)return;
+    const dx=e.changedTouches[0].clientX-viewerTouch.x,dy=e.changedTouches[0].clientY-viewerTouch.y;
+    if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)*1.15)displayViewerImage(viewerIndex+(dx<0?1:-1));
+    viewerTouch=null;
+  },{passive:true});
+  document.addEventListener('keydown',e=>{
+    if(!viewer.classList.contains('open'))return;
+    if(e.key==='Escape'){e.preventDefault();closeViewer()}
+    if(e.key==='ArrowRight'){e.preventDefault();displayViewerImage(viewerIndex+1)}
+    if(e.key==='ArrowLeft'){e.preventDefault();displayViewerImage(viewerIndex-1)}
+  });
+  function toggleLike(){liked=!liked;$('#top-wishlist').classList.toggle('active',liked);$('#bottom-wishlist').classList.toggle('active',liked);toast(liked?'Saved to wishlist (preview)':'Removed from wishlist (preview)')}
+  $('#top-wishlist').addEventListener('click',toggleLike);$('#bottom-wishlist').addEventListener('click',toggleLike);
+  $$('.size').forEach(b=>b.addEventListener('click',()=>{chosenSize=b.dataset.size;$$('.size').forEach(x=>{x.classList.toggle('active',x===b);x.setAttribute('aria-pressed',String(x===b))});$('#main-buy-label').textContent=chosenSize+'  ·  ADD TO BAG';toast('Size '+chosenSize+' selected')}));
+  $$('.swatch').forEach(b=>b.addEventListener('click',()=>{$$('.swatch').forEach(x=>{x.classList.toggle('active',x===b);x.setAttribute('aria-pressed',String(x===b))});chosenColour=b.dataset.colour;$('#colour-name').textContent=chosenColour;if(chosenColour!=='Light Grey')toast('Colour preview only — hero remains Light Grey')}));
+  $('#main-buy').addEventListener('click',()=>{if(!chosenSize){$('#size-picker').scrollIntoView({behavior:'smooth',block:'center'});toast('Select a size to continue');return;}toast('Prototype preview · No actual cart or checkout')});
+  function lookSummary(){const chosen=$$('.select-look.selected');const total=chosen.reduce((s,b)=>s+Number(b.dataset.price||0),0);$('#look-count').textContent=chosen.length+' '+(chosen.length===1?'piece':'pieces')+' selected';$('#add-look').innerHTML='<svg class="icon icon-sm"><use href="#i-bag"/></svg> Add Selected Look ('+chosen.length+' '+(chosen.length===1?'item':'items')+')';$('#look-total').textContent='₹'+total.toLocaleString('en-IN');$('#add-look').disabled=chosen.length===0;$('#add-look').style.opacity=chosen.length===0?'.4':'1'}
+  $$('.select-look').forEach(b=>b.addEventListener('click',()=>{b.classList.toggle('selected');const active=b.classList.contains('selected');b.textContent=active?'−':'+';b.setAttribute('aria-pressed',String(active));b.setAttribute('aria-label',(active?'Deselect ':'Select ')+b.dataset.product);lookSummary()}));
+  lookSummary();
+  $('#add-look').addEventListener('click',()=>toast('Styled look selected · Checkout disabled in prototype'));
+  const sheetContent={
+    size:{title:'Size Guide',html:'<p>Find a comfortable waist fit. The trousers have a relaxed leg and adjustable drawstring waist.</p><div class="sheet-table"><div>Waist</div><div>Fit</div><div>Silhouette</div><div>30–32</div><div>Regular waist</div><div>Relaxed</div><div>34–38</div><div>Regular waist</div><div>Relaxed</div></div><p>Illustrative size guidance only; garment measurements should be connected to the live size chart.</p>'},
+    fit:{title:'Find My Fit',html:'<p>The recommended experience would ask for your height, waist and preferred fit, then suggest a size. This is a visual prototype without a live recommendation engine.</p><div class="fit-points"><div class="fit-tag">Relaxed fit</div><div class="fit-tag">Adjustable waist</div><div class="fit-tag">Ankle length</div></div>'},
+    offers:{title:'Offers for you',html:'<p><b>STYLE10</b> · Extra ₹150 off at checkout on this demo style.</p><p>This is an illustrative applied offer; no real pricing rules are connected.</p>'},
+    delivery:{title:'Delivery & pickup',html:'<p>In the production app, this module will show availability and an estimated delivery date for the selected size, colour and PIN code.</p><p>Delivery estimates are not live in this prototype.</p>'},
+    stores:{title:'Find in Store',html:'<p>Selected size and colour would determine nearby store stock and pickup eligibility. The live Pantaloons inventory service is not connected to this design prototype.</p>'},
+    model:{title:'Model & garment fit',html:'<p>Illustrative display: model height 187 cm, wearing size 32. This must be replaced with verified photoshoot measurements for a live PDP.</p>'},
+    membership:{title:'Pantaloons Membership',html:'<p>Membership benefits, points and any eligible offers will appear here for signed-in users. Specific rewards are not live in this prototype.</p>'},
+    assurance:{title:'Why shop Pantaloons',html:'<p>Shop across Pantaloons brands and discover collection choices in stores as well as online. Product, payment and service policies should always link to current, verified information in the final app.</p>'},
+    returns:{title:'Returns & exchange',html:'<p>Return and exchange eligibility is product- and order-specific. The live app should show the verified policy for the selected item and fulfilment method.</p>'}
+  };
+  function showSheet(key){const d=sheetContent[key];if(!d)return;$('#sheet-title').textContent=d.title;$('#sheet-content').innerHTML=d.html;$('#sheet-backdrop').classList.add('open');$('#sheet').classList.add('open');$('#sheet').setAttribute('aria-hidden','false');document.body.style.overflow='hidden'}
+  function hideSheet(){$('#sheet-backdrop').classList.remove('open');$('#sheet').classList.remove('open');$('#sheet').setAttribute('aria-hidden','true');document.body.style.overflow=''}
+  $$('[data-sheet]').forEach(b=>b.addEventListener('click',()=>showSheet(b.dataset.sheet)));
+  $('#sheet-backdrop').addEventListener('click',hideSheet);$('#close-sheet').addEventListener('click',hideSheet);document.addEventListener('keydown',e=>{if(e.key==='Escape')hideSheet()});
+
+  // Store stock is a clearly labelled UI preview: no warehouse/store API calls.
+  const storeMore=$('#store-sizes-toggle');
+  storeMore.addEventListener('click',()=>{
+    const panel=$('#store-size-grid');
+    const show=panel.hidden;
+    panel.hidden=!show;
+    storeMore.setAttribute('aria-expanded',String(show));
+    storeMore.innerHTML=(show?'Hide sizes':'Check sizes')+' <span>›</span>';
+  });
+  function updateStorePreview(){
+    const s=chosenSize||'32';
+    const states={'30':'Available','32':'Limited stock','34':'Available','36':'Limited stock','38':'Currently unavailable','40':'Currently unavailable'};
+    $('#store-preview-stock').innerHTML='<i></i> Size '+s+' · '+states[s]+' (demo)';
+  }
+  $$('.size').forEach(b=>b.addEventListener('click',updateStorePreview));
+  updateStorePreview();
+  $('#pin-check').addEventListener('click',()=>{const code=$('#pin-input').value.trim();if(!/^\d{6}$/.test(code)){toast('Please enter a valid 6-digit PIN code');return;}toast('Delivery dates are sample estimates for PIN '+code)});
+  $('#pin-input').addEventListener('input',e=>{e.target.value=e.target.value.replace(/\D/g,'').slice(0,6)});
+  $('#back-btn').addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'});toast('Prototype · Back navigation not connected')});
+  $('#search-btn').addEventListener('click',()=>toast('Search is not connected in this preview'));
+  $('#cart-btn').addEventListener('click',()=>toast('Cart is not connected in this preview'));
+
+  $$('.plp-add').forEach(b=>b.addEventListener('click',()=>toast('Product quick add · Preview only')));
+})();
+</script>
+</body>
+</html>
